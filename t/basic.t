@@ -36,4 +36,30 @@ do {
         'strict option directly passed';
 };
 
+like exception {
+        Syntax::Feature::Io->install(
+            into    => 'null',
+            options => 'foo',
+        );
+    },
+    qr{
+            options \s+ for \s+ Syntax::Feature::Io
+        \s+ have \s+ to \s+ be
+        .+  array .+ hash .+ ref
+    }xism,
+    'invalid options';
+
+like exception {
+        Syntax::Feature::Io->install(
+            into    => 'null',
+            options => { -import => 'foo' },
+        );
+    },
+    qr{
+            option \s+ -import
+        .+  has \s+ to \s+ be
+        .+  array .+ ref
+    }xism,
+    'invalid options';
+
 done_testing;
