@@ -4,10 +4,11 @@ use strictures 1;
 
 package Syntax::Feature::Io;
 
-use Params::Classify    0.013   qw( is_ref );
-use Carp                        qw( croak );
-use Sub::Install        0.925   qw( install_sub );
-use IO::All             0.41    ();
+use Params::Classify        0.013   qw( is_ref );
+use Carp                            qw( croak );
+use Sub::Install            0.925   qw( install_sub );
+use IO::All                 0.41    ();
+use B::Hooks::EndOfScope    0.09;
 
 use namespace::clean;
 
@@ -46,7 +47,11 @@ sub install {
         code => IO::All
             ->generate_constructor(@{ $options->{ -import } }),
     };
+    on_scope_end {
+        namespace::clean->clean_subroutines($name);
+    };
 }
+
 
 1;
 
