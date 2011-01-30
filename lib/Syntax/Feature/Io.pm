@@ -57,6 +57,26 @@ sub install {
 
 __END__
 
+=option -import
+
+    use syntax io => { -import => [-strict] };
+
+You can use this option to pass import flags to L<IO::All>. Since this is
+the option you'll most likely use, if any, you can skip the hash reference
+and provide the import list directly if you wish:
+
+    use syntax io => [-strict];
+
+Please see L<IO::All/USAGE> for documentation on the import arguments.
+
+=option -as
+
+    use syntax io => { -as => 'IO' };
+
+    my @own_lines = IO(__FILE)->getlines;
+
+Set the name of the import.
+
 =head1 SYNOPSIS
 
     use syntax qw( io );
@@ -69,28 +89,6 @@ This is a syntax feature extension for L<syntax> providing L<IO::All>.
 
 Not much additional use is provided, besides much easier access if you are
 already using L<syntax> in one way or another.
-
-=head1 OPTIONS
-
-=head2 -import
-
-    use syntax io => { -import => [-strict] };
-
-You can use this option to pass import flags to L<IO::All>. Since this is
-the option you'll most likely use, if any, you can skip the hash reference
-and provide the import list directly if you wish:
-
-    use syntax io => [-strict];
-
-Please see L<IO::All/USAGE> for documentation on the import arguments.
-
-=head2 -as
-
-    use syntax io => { -as => 'IO' };
-
-    my @own_lines = IO(__FILE)->getlines;
-
-Set the name of the import.
 
 =head1 SEE ALSO
 

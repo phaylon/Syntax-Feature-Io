@@ -6,7 +6,7 @@ Syntax::Feature::Io - Provides IO::All
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -20,15 +20,6 @@ This is a syntax feature extension for L<syntax> providing L<IO::All>.
 
 Not much additional use is provided, besides much easier access if you are
 already using L<syntax> in one way or another.
-
-=head1 METHODS
-
-=head2 install
-
-    $class->install( %arguments )
-
-Used by L<syntax> to install the extension in the requesting namespace.
-Only the arguments C<into> and C<options> are recognized.
 
 =head1 OPTIONS
 
@@ -51,6 +42,15 @@ Please see L<IO::All/USAGE> for documentation on the import arguments.
     my @own_lines = IO(__FILE)->getlines;
 
 Set the name of the import.
+
+=head1 METHODS
+
+=head2 install
+
+    $class->install( %arguments )
+
+Used by L<syntax> to install the extension in the requesting namespace.
+Only the arguments C<into> and C<options> are recognized.
 
 =head1 SEE ALSO
 
